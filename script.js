@@ -4,6 +4,8 @@ class Clock {
     this.clock = document.querySelector('.clock');
     this.pauseButton = document.querySelector('#pause');
     this.resumeButton = document.querySelector('#resume');
+    this.pauseButton.addEventListener('click', (e) => { this.pauseClock(e); });
+    this.resumeButton.addEventListener('click', (e) => { this.resumeClock(e); });
 
     this.runClock = setInterval(() => this.setTime(), 1000);
   }
@@ -26,6 +28,14 @@ class Clock {
 
     const time = `${hour}:${min}:${sec} ${amPm}`;
     this.clock.innerHTML = time;
+  }
+
+  pauseClock(e) {
+    window.clearInterval(this.runClock);
+  }
+
+  resumeClock(e) {
+    this.runClock = setInterval(() => this.setTime(), 1000);
   }
 }
 
